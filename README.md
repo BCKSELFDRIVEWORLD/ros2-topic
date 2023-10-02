@@ -44,13 +44,27 @@ Create a Publisher for the /cmd_vel Topic that uses Twist messages:
       self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
 Create a timer object that will trigger the timer_callback method each 0.5 (timer_period) seconds:
 
-
-
-
-
       self.timer = self.create_timer(timer_period, self.timer_callback)
 Publish the contents of msg into the /cmd_vel Topic.
 
         self.publisher_.publish(msg)
+
+# Topic Subscriber
+
+Create a Subscriber for the /scan topic that uses LaserScan messages:
+
+
+         self.subscriber= self.create_subscription(
+                     LaserScan,
+                     '/scan',
+                     self.listener_callback,
+                     QoSProfile(depth=10, reliability=ReliabilityPolicy.RELIABLE))
+Notice that you are doing two interesting things here:
+
+First, you define a callback method named listener_callback for the subscriber. This means that every time a message is published to the /scan topic, this method will be triggered.
+Second, you define a QoSProfile. This refers to the Quality of Service of the topic.
+
+
+      
 
    
