@@ -36,7 +36,21 @@ The .msg files are composed of two parts: fields and constants.
       ros2 topic pub --once /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
 # Topic Publisher
 
+Initiate a node named simple_publisher:
+
+      super().__init__('simple_publisher')
+Create a Publisher for the /cmd_vel Topic that uses Twist messages:
+
+      self.publisher_ = self.create_publisher(Twist, 'cmd_vel', 10)
+Create a timer object that will trigger the timer_callback method each 0.5 (timer_period) seconds:
 
 
+
+
+
+      self.timer = self.create_timer(timer_period, self.timer_callback)
+Publish the contents of msg into the /cmd_vel Topic.
+
+        self.publisher_.publish(msg)
 
    
