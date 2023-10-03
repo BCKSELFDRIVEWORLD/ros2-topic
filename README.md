@@ -64,7 +64,22 @@ Notice that you are doing two interesting things here:
 First, you define a callback method named listener_callback for the subscriber. This means that every time a message is published to the /scan topic, this method will be triggered.
 Second, you define a QoSProfile. This refers to the Quality of Service of the topic.
 
+# TASK
 
-      
+Write a Publisher and Subscriber node:
+
+Create a new package and call it exercise31_pkg with rclpy, std_msgs, sensor_msgs, and geometry_msgs as dependencies.
+
+Use the previous publisher code as a template to create a new program that makes the robot turn left using Twist messages.
+
+Get information from the laser and use the LaserScan messages to decide how to move.
+
+Turn left until you get a value lower than 5m (from the laser direction in front of the robot). Then, move straight.
+
+If the distance received is greater than 50cm, move in a straight line towards the wall (do not go too fast!).
+
+If the distance received is less than 50cm, the robot stops.
+
+The resulting motion should be something similar to this:
 
    
